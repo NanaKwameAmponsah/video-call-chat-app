@@ -6,18 +6,28 @@ import NotificationsPage from "./pages/NotificationsPage.jsx";
 import CallPage from "./pages/CallPage.jsx";
 import OnboardingPage from "./pages/OnboardingPage.jsx";
 import ChatPage from "./pages/ChatPage.jsx";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { useEffect, useState } from "react";
+import {useQuery} from "@tanstack/react-query";
+import {axiosInstance} from "./lib/axios.js";
 
 const App = () => {
+  const {data, isLoading, error, } = useQuery({
+    queryKey:["todos"],
+
+    queryFn: async() => {
+
+      const res = await axiosInstance.get("/auth/me");
+
+      return res.data;
+
+    },
+    retry: false,
+  });
+  console.log({data});
+  console.log({ isLoading});
+  console.log({ error });
   return <div className= "h-screen text-5xl" data-theme="night">
-    <button onClick={() => toast.error("Hello World!")}>Create a toast</button>
-    <button className="btn">Button</button>
-    <button className="btn btn-neutral">Neutral</button>
-    <button className="btn btn-primary">Primary</button>
-    <button className="btn btn-secondary">Secondary</button>
-    <button className="btn btn-accent">Accent</button>
-    <button className="btn btn-ghost">Ghost</button>
-    <button className="btn btn-link">Link</button>
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/signup" element={<SignUpPage />} />
