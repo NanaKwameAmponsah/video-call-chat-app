@@ -156,7 +156,7 @@ rounded-xl shadow-lg overflow-hidden">
         <div className="max-w-md p-8">
           {/*Illustration */}
         <div className="relative aspect-square max-w-sm mx-auto">
-          <img src="/video-call-image.png" alt="Language connection illustration" className="w-full h-full" />
+          <img src="/signup.png" alt="Language connection illustration" className="w-full h-full" />
         </div>
 
         <div className="text-center space-y-3 mt-6">
