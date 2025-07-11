@@ -126,9 +126,9 @@ const LoginPage = () => {
         </div>
 
         <div className="text-center space-y-3 mt-6">
-          <h2 className="text-xl font-semibold">Join others in the mutual pursuit of the truth</h2>
+          <h2 className="text-xl font-semibold">Return to the Academical Village</h2>
           <p className="text-sm opacity-70">
-            Go thought for thought, make friends, and broaden your perspectives
+            Rejoin your fellow cognoscenti in mutual pursuit of truth.
           </p>
         </div>
       </div>

@@ -150,9 +150,9 @@ rounded-xl shadow-lg overflow-hidden">
         </div>
 
         <div className="text-center space-y-3 mt-6">
-          <h2 className="text-xl font-semibold">Join others in the mutual pursuit of the truth</h2>
+          <h2 className="text-xl font-semibold">Enter the Scholarly Commons</h2>
           <p className="text-sm opacity-70">
-            Go thought for thought, make friends, and broaden your perspectives
+            Join the Academical Village and engage fellow thinkers in mutual pursuit of truth
           </p>
         </div>
       </div>
