@@ -9,6 +9,7 @@ import ChatPage from "./pages/ChatPage.jsx";
 import { Toaster } from "react-hot-toast";
 import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
+import Layout from "./components/Layout.jsx";
 
 //if user is authenticated, we'll check if they're onboarded, if they are not, navigate them to onboard page, if they are onboarded, they can go to whatever page they want. if they're not authenticated, we'll navigate them to login page. 
 const App = () => {
@@ -19,16 +20,19 @@ const App = () => {
   const isOnboarded = authUser?.isOnboarded;
 
 
-  if (isLoading) return <PageLoader />;
+  if (isLoading) return <PageLoader/>;
 
   return (
-  <div className= "h-screen " data-theme="night">
+  <div className= "h-screen" data-theme="night">
     <Routes>
       <Route 
         path="/" 
         element={
           isAuthenticated && isOnboarded ? ( 
-            <HomePage />
+            <Layout showSidebar>
+              <HomePage />
+            </Layout>
+
           ) : (
           <Navigate to={!isAuthenticated ? "/login" : "/onboarding"} />
       )
