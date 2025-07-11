@@ -1,8 +1,8 @@
 import { useState }  from 'react'
 import { Brain } from "lucide-react";
 import {Link } from "react-router";
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { signup } from '../lib/api';
+import useSignup from '../hooks/useSignup';
+
 
 
 const SignUpPage = () => {
@@ -12,19 +12,9 @@ const SignUpPage = () => {
     password: "",
   });
 
-  const queryClient = useQueryClient();
 
+const {isPending, error,signupMutation} = useSignup();
 
-  const {mutate:signupMutation, isPending, error} = useMutation({
-    mutationFn: signup,
-    //if everything goes successfully this function will fetch the authenticated user data so we're redirected
-    onSuccess: () => queryClient.invalidateQueries({queryKey: ["authUser"]}),
-
-
-  });
-  //once you create an account this method will run, then cal the mutate function just above, which sends a request 
-  // to our endpoint with the signup data we have, if everything goes successfully we'll refetch the onSuccess query
-  // the route path will be reevaluated and well be navigated to the homepage
   const handleSignup = (e) => {
     e.preventDefault();
     signupMutation(signupData);

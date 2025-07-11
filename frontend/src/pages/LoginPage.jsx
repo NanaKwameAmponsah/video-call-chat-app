@@ -1,20 +1,16 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { BrainIcon } from 'lucide-react';
 import React, { useState } from 'react'
-import { login } from '../lib/api';
 import { Link } from "react-router";
+import useLogin from '../hooks/useLogin';
 const LoginPage = () => {
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
   });
 
-  const queryClient = useQueryClient();
+  const { isPending, error, loginMutation} = useLogin()
 
-  const {mutate:loginMutation, isPending, error} = useMutation({
-    mutationFn:login,
-    onSuccess:()=>queryClient.invalidateQueries({queryKey:["authUser"]})
-  });
+
 
   const handleLogin = (e) => {
     e.preventDefault();//so it doesn't refresh the page
