@@ -10,20 +10,23 @@ import { Toaster } from "react-hot-toast";
 import PageLoader from "./components/PageLoader.jsx";
 import useAuthUser from "./hooks/useAuthUser.js";
 import Layout from "./components/Layout.jsx";
+import { useThemeStore } from "./store/useThemeStore.js";
 
 //if user is authenticated, we'll check if they're onboarded, if they are not, navigate them to onboard page, if they are onboarded, they can go to whatever page they want. if they're not authenticated, we'll navigate them to login page. 
 const App = () => {
 
   const {isLoading, authUser} = useAuthUser();
+  const { theme } = useThemeStore();
+ 
 
-  const isAuthenticated = Boolean (authUser);
+  const isAuthenticated = Boolean(authUser);
   const isOnboarded = authUser?.isOnboarded;
 
 
   if (isLoading) return <PageLoader/>;
 
   return (
-  <div className= "h-screen" data-theme="night">
+  <div className="h-screen" data-theme={theme}>
     <Routes>
       <Route 
         path="/" 

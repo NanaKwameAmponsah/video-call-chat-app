@@ -1,5 +1,5 @@
 import { BrainIcon } from 'lucide-react';
-import React, { useState } from 'react'
+import  { useState } from 'react'
 import { Link } from "react-router";
 import useLogin from '../hooks/useLogin';
 const LoginPage = () => {
@@ -8,14 +8,14 @@ const LoginPage = () => {
     password: "",
   });
 
-  const { isPending, error, loginMutation} = useLogin()
+  const { isPending, error, loginMutation} = useLogin();
 
 
 
   const handleLogin = (e) => {
     e.preventDefault();//so it doesn't refresh the page
     loginMutation(loginData);
-  }
+  };
 
 
   return (
