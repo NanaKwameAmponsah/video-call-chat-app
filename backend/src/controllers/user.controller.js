@@ -9,14 +9,14 @@ export async function getRecommendedUsers(req, res) {
         const currentUserId = req.user.id;
         const currentUser = req.user
 
-        const getRecommendedUsers = await User.find({
+        const recommendedUsers = await User.find({
             $and: [
                 {_id:{$ne: currentUserId}}, //exclude current user
-                {$id: {$nin: currentUser.friends}}, //exclude current user's friends
+                {_id: {$nin: currentUser.friends}}, //exclude current user's friends
                 {isOnboarded: true}// only want to see onboarded users
-            ]
-        })
-        res.status(200).json({recommendedUsers})
+            ],
+        });
+        res.status(200).json(recommendedUsers);
     } catch (error) {
         console.error("Error in getRecommendedUsers controller", error.message);
 
@@ -72,7 +72,7 @@ export async function sendFriendRequest(req, res) {
             return res.status(400).json({ message: "A friend request already exists between you and this user"});
         }
         //finally, if all those checks go through, create a friend request
-        const FriendRequest = await FriendRequest.create({
+        const newRequest = await FriendRequest.create({
             sender: myId,
             recipient: recipientId,
 
@@ -146,7 +146,7 @@ export async function getFriendRequests(req, res){
 
 export async function getOutgoingFriendReqs(req, res){
     try {
-        const outgoingRequests = await friendRequest.find({
+        const outgoingRequests = await FriendRequest.find({
             sender: req.user.id,
             status: "pending",
 
