@@ -1,7 +1,7 @@
 import React from 'react'
 import useAuthUser from '../hooks/useAuthUser'
 import { Link, useLocation } from "react-router";
-import { BellIcon, BrainIcon, HomeIcon, UsersRoundIcon } from 'lucide-react';
+import { BellIcon, BrainIcon, HomeIcon} from 'lucide-react';
 
 const Sidebar = () => {
     const { authUser} = useAuthUser();
@@ -28,14 +28,6 @@ const Sidebar = () => {
             >
                 <HomeIcon className="size-5 text-base-content opacity-70" />
                 <span>Home</span>
-            </Link>
-            <Link 
-                to="/friends"
-                //if the current path is on the home page, make the home button active, else ignore it 
-                className={`btn btn-ghost justify-start w-full gap-3 px-3 normal-case ${currentPath === "/" ? "btn-active" : "" }`}
-            >
-                <UsersRoundIcon className="size-5 text-base-content opacity-70" />
-                <span>Friends</span>
             </Link>
             <Link 
                 to="/notifications"
