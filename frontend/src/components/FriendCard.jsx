@@ -13,7 +13,7 @@ const FriendCard = ({friend}) => {
         {/* ACTIONS */}
         <div className="flex flex-wrap gap-1.5 mb-3">
             <span className="badge badge-secondary text-xs">
-                Your Beliefs/Philosophy : {friend.yourBeliefsPhilosophy}
+                Beliefs/Philosophy: {friend.yourBeliefsPhilosophy}
             </span>
             <span className="badge badge-outline text-xs">
                 Curious About: {friend.curiousAbout}
