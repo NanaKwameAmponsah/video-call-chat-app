@@ -125,3 +125,43 @@ export async function onboard(req, res) {
 
     }
 }
+
+export async function updateProfile(req, res) {
+    try{
+        const userId = req.user._id;
+        const updateData = {};
+        
+        // Only include fields that are provided in the request
+        const allowedFields = ['fullName', 'bio', 'yourBeliefsPhilosophy', 'curiousAbout', 'location', 'profilePic'];
+        
+        allowedFields.forEach(field => {
+            if (req.body[field] !== undefined) {
+                updateData[field] = req.body[field];
+            }
+        });
+
+        if (Object.keys(updateData).length === 0) {
+            return res.status(400).json({message: "No valid fields provided for update"});
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(userId, updateData, {new: true});
+
+        if (!updatedUser) return res.status(404).json({message: "User not found"});
+        
+        try{
+            await upsertStreamUser({
+                id: updatedUser._id.toString(), 
+                name: updatedUser.fullName, 
+                image: updatedUser.profilePic || ""
+            });
+            console.log(`Stream user updated for ${updatedUser.fullName}`);
+        } catch (streamError){
+            console.log("Error updating Stream user:", streamError.message);
+        }
+
+        res.status(200).json({ success: true, user: updatedUser});
+    } catch(error) {
+        console.error("Profile update error:", error);
+        res.status(500).json({ message: "Internal Server Error"});
+    }
+}
