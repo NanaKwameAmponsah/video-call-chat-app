@@ -1,3 +1,4 @@
+
 #  MindSwap - Intellectual Exchange Platform
 A full-stack real-time chat and video calling platform designed to foster intellectual discourse between individuals with diverse philosophical perspectives. MindSwap connects users based on contrasting belief systems to encourage constructive academic dialogue and broaden worldviews.
 
@@ -302,3 +303,4 @@ Ensure all environment variables are set in your production environment:
 ---
 
 **Built with love for intellectual discourse and meaningful connections.**
+
