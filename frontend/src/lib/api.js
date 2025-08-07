@@ -29,6 +29,11 @@ export const completeOnboarding = async (userData) => {
     const response = await axiosInstance.post("/auth/onboarding", userData);
     return response.data;
 };
+
+export const updateProfile = async (userData) => {
+    const response = await axiosInstance.put("/auth/profile", userData);
+    return response.data;
+};
 //send request to end point users to fetch the friends and or recommended users then return the data
 export async function getUserFriends(){
   const response = await axiosInstance.get("/users/friends");
