@@ -1,7 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Link} from "react-router";
 import { getOutgoingFriendReqs, getRecommendedUsers, getUserFriends, sendFriendRequest } from "../lib/api";
-import {  UsersRoundIcon, EarthIcon, UserPlusIcon, CheckLineIcon } from "lucide-react";
+import {  UsersRoundIcon, EarthIcon, UserPlusIcon, CheckLineIcon, MessageSquareIcon } from "lucide-react";
 import {useEffect, useState} from "react";
 import FriendCard from "../components/FriendCard";
 import NoFriends from "../components/NoFriends";
@@ -114,27 +114,37 @@ const HomePage = () => {
               </div>
               {user.bio && <p className="text-sm opacity-70"> {user.bio}</p>}
 
-              {/* Action Button : button with a class name that works such that if a request has already been sent, it will be disabled else it'll be primary
-               and then on click we're gonna call our sendRequestMutation with the argument (our user id) and this will be disabled if the request has already been sent or if we are in the pending state. and if the request has been sent
-               we're gonna see the user check icon from lucide react as well as a request sent message else we'll see the userplus icon from lucide dev as well as a send friend request message */}
-              <button 
-                className={`btn w-full mt-2 ${
-                  hasRequestBeenSent ? "btn-disabled" : "btn-primary"
-                }`}
-                onClick={() => sendRequestMutation(user._id)}
-                disabled = {hasRequestBeenSent || isPending}
+              {/* Action Buttons */}
+              <div className="flex gap-2">
+                {/* Message Button */}
+                <Link 
+                  to={`/chat/${user._id}`} 
+                  className="btn btn-outline flex-1"
                 >
-                  {hasRequestBeenSent ? ( 
-                    <>
-                      <CheckLineIcon className="size-4 mr-2" />
-                      Request Sent
-                  </>) : (
-                    <>
-                      <UserPlusIcon className="size-4 mr-2" />
-                      Send Friend Request
-                    </>
-                  )}
-                </button>
+                  <MessageSquareIcon className="size-4 mr-2" />
+                  Message
+                </Link>
+
+                {/* Friend Request Button */}
+                <button 
+                  className={`btn flex-1 ${
+                    hasRequestBeenSent ? "btn-disabled" : "btn-primary"
+                  }`}
+                  onClick={() => sendRequestMutation(user._id)}
+                  disabled = {hasRequestBeenSent || isPending}
+                  >
+                    {hasRequestBeenSent ? ( 
+                      <>
+                        <CheckLineIcon className="size-4 mr-2" />
+                        Request Sent
+                    </>) : (
+                      <>
+                        <UserPlusIcon className="size-4 mr-2" />
+                        Send Friend Request
+                      </>
+                    )}
+                  </button>
+              </div>
             </div>
 
                 )
