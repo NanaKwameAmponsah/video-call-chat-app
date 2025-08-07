@@ -284,7 +284,7 @@ Ensure all environment variables are set in your production environment:
 
 - **Documentation**: Check this README and inline code comments
 - **Issues**: Open an issue on GitHub for bugs or feature requests
-- **Email**: [vfy7pe@virginia.edu](mailto:your-email@example.com)
+- **Email**: [vfy7pe@virginia.edu]
 
 ##  Roadmap
 
@@ -305,9 +305,9 @@ Ensure all environment variables are set in your production environment:
 
 **Nana Kwame Amponsah**
 
-- 📧 Email: [vfy7pe@virginia.edu]
-- 💼 LinkedIn: [www.linkedin.com/in/nana-kwame-amponsah]
-- 🌐 Portfolio: [coming soon!]
+-  Email: [vfy7pe@virginia.edu]
+-  LinkedIn: [www.linkedin.com/in/nana-kwame-amponsah]
+-  Portfolio: [coming soon!]
 
 **Built with love for intellectual discourse and meaningful connections.**
 
